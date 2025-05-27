@@ -66,6 +66,21 @@ body {
 .answers-container {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+}
 
-  
+.answers-btn {
+  background-color: #f8f0e5;
+  color: #333;
+  border: 2px solid #eadbc8;
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.answers-btn:hover {
+  background-color: #eadbc8;
+  border-color: #dac0ae;
 }
