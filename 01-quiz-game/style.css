@@ -78,6 +78,7 @@ body {
   padding: 1rem;
   cursor: pointer;
   text-align: left;
+  transition: all 0.3s ease;
 }
 
 .answers-btn:hover {
