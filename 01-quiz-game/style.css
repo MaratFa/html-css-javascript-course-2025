@@ -86,3 +86,11 @@ body {
   border-color: #dac0ae;
 }
 
+.answers-btn.correct {
+  background-color: #e6fff0;
+  border-color: #a3f0c4;
+  color: #28a745;
+}
+
+
+
