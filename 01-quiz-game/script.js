@@ -82,9 +82,29 @@ function startQuiz() {
 
   startScreen.classList.remove("active");
   quizScreen.classList.add("active");
+
+  showQuestion();
+}
+
+function showQuestion() {
+  // reset state
+  answersDisabled = false;
+
+  const currentQuestion = quizQuestions[currentQuestionIndex];
+
+  currentQuestionSpan.textContent = currentQuestionIndex + 1;
+
+  const progressPercent = (currentQuestionIndex / quizQuestions.length) * 100;
+  progressBar.style.width = progressPercent + "%";
+
+  questionText.textContent = currentQuestion.question;
+  
+  // todo: explain this in a second
+  answersContainer.innerHTML = "";
+
+  
 }
 
 function restartQuiz() {
   console.log("quiz re-started");
 }
-
