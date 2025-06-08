@@ -52,7 +52,7 @@ body {
 }
 
 .quiz-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 #question-text {
@@ -76,7 +76,7 @@ body {
   margin-bottom: 25px;
 }
 
-.answers-btn {
+.answer-btn {
   background-color: #f8f0e5;
   color: #333;
   border: 2px solid #eadbc8;
@@ -87,18 +87,18 @@ body {
   transition: all 0.3s ease;
 }
 
-.answers-btn:hover {
+.answer-btn:hover {
   background-color: #eadbc8;
   border-color: #dac0ae;
 }
 
-.answers-btn.correct {
+.answer-btn.correct {
   background-color: #e6fff0;
   border-color: #a3f0c4;
   color: #28a745;
 }
 
-.answers-btn.incorrect {
+.answer-btn.incorrect {
   background-color: #fff0f0;
   border-color: #ffbdbd;
   color: #dc3545;
