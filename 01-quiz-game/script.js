@@ -71,14 +71,13 @@ totalQuestionsSpan.textContent = quizQuestions.length;
 maxScoreSpan.textContent = quizQuestions.length;
 
 // event listeners
-
 startButton.addEventListener("click", startQuiz);
 restartButton.addEventListener("click", restartQuiz);
 
 function startQuiz() {
-  console.log(answersContainer.children);
   // reset vars
   currentQuestionIndex = 0;
+  score = 0;
   scoreSpan.textContent = 0;
 
   startScreen.classList.remove("active");
@@ -115,6 +114,7 @@ function showQuestion() {
     answersContainer.appendChild(button);
   });
 }
+
 
 function selectAnswer(event) {
   // optimization check
@@ -157,7 +157,7 @@ function showResults() {
 
   finalScoreSpan.textContent = score;
 
-  const percentage = (srore / quizQuestions.length) * 100;
+  const percentage = (score / quizQuestions.length) * 100;
 
   if (percentage === 100) {
     resultMessage.textContent = "Perfect! You're a genius!";
@@ -173,5 +173,7 @@ function showResults() {
 }
 
 function restartQuiz() {
-  console.log("quiz re-started");
+  resultScreen.classList.remove("active");
+
+  startQuiz();
 }
