@@ -76,6 +76,7 @@ startButton.addEventListener("click", startQuiz);
 restartButton.addEventListener("click", restartQuiz);
 
 function startQuiz() {
+  console.log(answersContainer.children);
   // reset vars
   currentQuestionIndex = 0;
   scoreSpan.textContent = 0;
@@ -98,11 +99,77 @@ function showQuestion() {
   progressBar.style.width = progressPercent + "%";
 
   questionText.textContent = currentQuestion.question;
-  
-  // todo: explain this in a second
+
   answersContainer.innerHTML = "";
 
-  
+  currentQuestion.answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.textContent = answer.text;
+    button.classList.add("answer-btn");
+
+    // What is dataset? It's a property of the button element that allows you to store custom data
+    button.dataset.correct = answer.correct;
+
+    button.addEventListener("click", selectAnswer);
+
+    answersContainer.appendChild(button);
+  });
+}
+
+function selectAnswer(event) {
+  // optimization check
+  if (answersDisabled) return;
+
+  answersDisabled = true;
+
+  const selectedButton = event.target;
+  const isCorrect = selectedButton.dataset.correct === "true";
+
+  // Here Array.from() is used to convert the NodeList returned by answersContainer.children into array, this is because the NodeList is not an array and we need to use the forEach method
+  Array.from(answersContainer.children).forEach((button) => {
+    if (button.dataset.correct === "true") {
+      button.classList.add("correct");
+    } else if (button === selectedButton) {
+      button.classList.add("incorrect");
+    }
+  });
+
+  if (isCorrect) {
+    score++;
+    scoreSpan.textContent = score;
+  }
+
+  setTimeout(() => {
+    currentQuestionIndex++;
+
+    // check if there are more questions or if the quiz is over
+    if (currentQuestionIndex < quizQuestions.length) {
+      showQuestion();
+    } else {
+      showResults();
+    }
+  }, 1000);
+}
+
+function showResults() {
+  quizScreen.classList.remove("active");
+  resultScreen.classList.add("active");
+
+  finalScoreSpan.textContent = score;
+
+  const percentage = (srore / quizQuestions.length) * 100;
+
+  if (percentage === 100) {
+    resultMessage.textContent = "Perfect! You're a genius!";
+  } else if (percentage >= 80) {
+    resultMessage.textContent = "Great job! You know your stuff!";
+  } else if (percentage >= 60) {
+    resultMessage.textContent = "Good effort! Keep learning!";
+  } else if (percentage >= 40) {
+    resultMessage.textContent = "Not bad! Try again to improve!";
+  } else {
+    resultMessage.textContent = "Keep studying! You'll get better!";
+  }
 }
 
 function restartQuiz() {
