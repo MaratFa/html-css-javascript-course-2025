@@ -122,22 +122,21 @@ h2 {
   flex-grow: 1;
 }
 
-/* TODO: SHOW THIS LATER IN THE VIDEO */
 #transaction-list::-webkit-scrollbar {
   width: 8px;
 }
 
-#trasaction-list::-webkit-scrollbar-track {
+#transaction-list::-webkit-scrollbar-track {
   /* track is the bg of the scrollbar */
   background-color: #f1f1f1;
   border-radius: 4px;
 }
-#trasaction-list::-webkit-slider-thumb {
+#transaction-list::-webkit-scrollbar-thumb {
   /* thumb is the draggble part of the scrollbar */
   background-color: #cbd5e0;
   border-radius: 4px;
 }
-#transcation-list::-webkit-slider-thumb:hover {
+#transaction-list::-webkit-scrollbar-thumb:hover {
   background-color: #a0aec0;
 }
 
