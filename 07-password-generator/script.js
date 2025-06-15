@@ -69,6 +69,18 @@ function updateStrengthMeter(newPassword) {
   if (hasLowercase) strengthScore += 15;
   if (hasNumbers) strengthScore += 15;
   if (hasSymbols) strengthScore += 15;
+
+  // enforce minimum score for every short password
+  if(passwordLength < 8) {
+    strengthScore = Math.min(strengthScore, 40)
+  }
+
+  // ensure the width of strength bar is a valid percentage
+  const safeScore = Math.max(5, Math.min(100, strengthScore))
+  strengthBar.style.width = safeScore + "%"
+
+  let strengthLabelText = ""
+  let barColor = ""
 }
 
 function chreateRandomPassword(
