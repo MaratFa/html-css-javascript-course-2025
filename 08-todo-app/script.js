@@ -19,7 +19,7 @@ taskInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") addTodo(taskInput.value);
 });
 
-clearCompletedBtn.addEventListener("click", clearCompletedBtn);
+clearCompletedBtn.addEventListener("click", clearCompleted);
 
 function addTodo(text) {
   if (text.trim() === "") return;
