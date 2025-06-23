@@ -11,12 +11,6 @@ const filters = document.querySelectorAll(".filter");
 let todos = [];
 let currentFilter = "";
 
-
-
-
-
-
-
 addTaskBtn.addEventListener("click", () => {
   addTodo(taskInput.value);
 });
@@ -26,11 +20,6 @@ taskInput.addEventListener("keydown", (e) => {
 });
 
 clearCompletedBtn.addEventListener("click", clearCompletedBtn);
-
-
-
-
-
 
 function addTodo(text) {
   if (text.trim() === "") return;
@@ -42,7 +31,7 @@ function addTodo(text) {
   };
 
   todos.push(todo);
-  
+
   saveTodos();
   renderTodos();
 }
@@ -80,7 +69,7 @@ function filterTodos(filter) {
 function renderTodos() {
   todosList.innerHTML = "";
 
-  const filteredTodos = filterTodos(currentFilter);  
+  const filteredTodos = filterTodos(currentFilter);
 
   filteredTodos.forEach((todo) => {
     const todoItem = document.createElement("li");
@@ -151,7 +140,7 @@ function loadTodos() {
 
 filters.forEach((filter) => {
   filter.addEventListener("click", () => {
-    setActivefilter();
+    setActivefilter(filter.getAttribute("data-filter"));
   });
 });
 
@@ -175,10 +164,6 @@ function setDate() {
 
   dateElement.textContent = today.toLocaleDateString("En-Us", options);
 }
-
-
-
-
 
 window.addEventListener("DOMContentLoaded", () => {
   loadTodos();
