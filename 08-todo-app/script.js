@@ -1,19 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // DOM Elements
 const taskInput = document.getElementById("task-input");
 const addTaskBtn = document.getElementById("add-task");
@@ -27,6 +11,12 @@ const filters = document.querySelectorAll(".filter");
 let todos = [];
 let currentFilter = "";
 
+
+
+
+
+
+
 addTaskBtn.addEventListener("click", () => {
   addTodo(taskInput.value);
 });
@@ -36,6 +26,11 @@ taskInput.addEventListener("keydown", (e) => {
 });
 
 clearCompletedBtn.addEventListener("click", clearCompletedBtn);
+
+
+
+
+
 
 function addTodo(text) {
   if (text.trim() === "") return;
@@ -47,7 +42,7 @@ function addTodo(text) {
   };
 
   todos.push(todo);
-
+  
   saveTodos();
   renderTodos();
 }
@@ -66,7 +61,7 @@ function updateItemsCount() {
 }
 
 function checkEmptyState() {
-  const filteredTodos = filteredTodos(currentFilter);
+  const filteredTodos = filterTodos(currentFilter);
   if (filteredTodos?.length === 0) emptyState.classList.remove("hidden");
   else emptyState.classList.add("hidden");
 }
@@ -78,14 +73,14 @@ function filterTodos(filter) {
     case "completed":
       return todos.filter((todo) => todo.completed);
     default:
-      todos;
+      return todos;
   }
 }
 
 function renderTodos() {
   todosList.innerHTML = "";
 
-  const filteredTodos = filterTodos(currentFilter);
+  const filteredTodos = filterTodos(currentFilter);  
 
   filteredTodos.forEach((todo) => {
     const todoItem = document.createElement("li");
@@ -180,6 +175,10 @@ function setDate() {
 
   dateElement.textContent = today.toLocaleDateString("En-Us", options);
 }
+
+
+
+
 
 window.addEventListener("DOMContentLoaded", () => {
   loadTodos();
