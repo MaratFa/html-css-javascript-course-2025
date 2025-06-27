@@ -59,5 +59,10 @@ header h1 {
   position: relative;
 }
 
-
+header h1::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  
+}
 
