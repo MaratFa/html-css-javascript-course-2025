@@ -63,6 +63,55 @@ header h1::after {
   content: "";
   position: absolute;
   width: 60px;
-  
+  height: 4px;
+  background: var(--primary-color);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+header p {
+  color: var(--text-gray);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.team-card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.team-card:hover .profile-bg {
+  transform: scale(1.1);
+}
+
+.card-top {
+  position: relative;
+  padding-top: 70px;
+  padding-bottom: 30px;
+  text-align: center;
+  z-index: 1;
 }
 
