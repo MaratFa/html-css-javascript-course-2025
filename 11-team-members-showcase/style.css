@@ -201,3 +201,23 @@ header p {
   transform: translateY(-3px);
 }
 
+.team-cta {
+  text-align: center;
+  margin-top: 30px;
+  padding: 40px;
+  background-color: var(--bg-overlay);
+  border-radius: var(--border-radius);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.team-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--primary-gradient);
+  width: 100%;
+  height: ;
+}
