@@ -119,23 +119,20 @@ async function handleMealClick(e) {
           ${ingredients
             .map(
               (item) => `
-                
+
+
+
+
+
+
+              
+
+
+
+
               `
             )
-          }
-
-
-
-      
-
-
-
-
-
-
-
-
-      
+          }      
       `
     }
   } catch (error) {}
