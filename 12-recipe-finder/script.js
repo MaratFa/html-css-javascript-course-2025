@@ -118,21 +118,12 @@ async function handleMealClick(e) {
         <ul class="ingredients-list">
           ${ingredients
             .map(
-              (item) => `
-
-
-
-
-
-
-              
-
-
-
-
-              `
-            )
-          }      
+                  (item) => `
+                    <li><l class="fas fa-check-circle"></i> ${item.meausure} ${item.ingredient}</li>          
+                  `
+                )
+                .join("")}
+                      
       `
     }
   } catch (error) {}
