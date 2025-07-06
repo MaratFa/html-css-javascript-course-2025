@@ -122,8 +122,7 @@ async function handleMealClick(e) {
                     <li><l class="fas fa-check-circle"></i> ${item.meausure} ${item.ingredient}</li>          
                   `
                 )
-                .join("")}
-                      
+                .join("")}     
       `
     }
   } catch (error) {}
