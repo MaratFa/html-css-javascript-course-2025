@@ -8,11 +8,19 @@ const mealDetails = document.getElementById("meal-details");
 const mealDetailsContent = document.querySelector(".meal-details-content");
 const backBtn = document.getElementById("back-btn");
 
-const BASE_URL = "www.themealdb.com/api/json/v1/1/";
+const BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
 const SEARCH_URL = `${BASE_URL}search.php?s=`;
 const LOOKUP_URL = `${BASE_URL}lookup.php?i=`;
 
 searchBtn.addEventListener("click", searchMeals);
+
+
+
+
+
+
+
+
 
 mealsContainer.addEventListener("click", handleMealClick);
 
@@ -23,7 +31,7 @@ searchInput.addEventListener("keypress", (e) => {
 });
 
 async function searchMeals() {
-  const searchTerm = searchInput.ariaValueMax.trim();
+  const searchTerm = searchInput.value.trim();
 
   // handled the edge case
   if (!searchTerm) {
@@ -33,7 +41,7 @@ async function searchMeals() {
   }
 
   try {
-    reesultHeading.textContent = `Search for "${searchTerm}"...`;
+    resultHeading.textContent = `Searching for "${searchTerm}"...`;
     mealsContainer.innerHTML = "";
     errorContainer.classList.add("hidden");
 
@@ -54,8 +62,7 @@ async function searchMeals() {
       searchInput.value = "";
     }
   } catch (error) {
-    errorContainer.textContent =
-      "Something went wrong. Please try again later.";
+    errorContainer.textContent = "Something went wrong. Please try again later.";
     errorContainer.classList.remove("hidden");
   }
 }
@@ -70,11 +77,7 @@ function displayMeals(meals) {
         <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
         <div class="meal-info">
           <h3 class="meal-title">${meal.strMeal}</h3>
-          ${
-            meal.strCategory
-              ? `<div class="meal-category">${meal.strCategory}</div>`
-              : ""
-          }
+          ${meal.strCategory ? `<div class="meal-category">${meal.strCategory}</div>` : ""}
         </div>
       </div>
     `;
@@ -97,9 +100,9 @@ async function handleMealClick(e) {
       const ingredients = [];
 
       for (let i = 1; i <= 20; i++) {
-        if (meal[`strIgredient${i}`] && meal[`strIngredient${i}`].trim !== "") {
+        if (meal[`strIngredient${i}`] && meal[`strIngredient${i}`].trim() !== "") {
           ingredients.push({
-            ingredient: meal[`srtIngredient${i}`],
+            ingredient: meal[`strIngredient${i}`],
             measure: meal[`strMeasure${i}`],
           });
         }
@@ -107,43 +110,43 @@ async function handleMealClick(e) {
 
       // display meal details
       mealDetailsContent.innerHTML = `
-        <img src="${meal.strMealThumb}" alt="${
-        meal.strMeal
-      }" class="meal-details-img">
-        <h2 class="meal-details-title">${meal.strMeal}</h2>
-        <div class="mealj-details-category">
-          <span>${meal.strCategory || "Uncategorized"}</span>
-        </div>
-        <div class="meal-details-insructions">
-          <h3>Instructions</h3>
-          <p>${meal.strInstructions}</p>
-        </div>
-        <div class="meal-details-ingredients">
-          <h3>Ingredients</h3>
-          <ul class="ingredients-list">
-            ${ingredients
-              .map(
-                (item) => `
-                              <li><i class="fas fa-check-circle"></i> ${item.meausure} ${item.ingredient}</li>          
-                            `
-              )
-              .join("")}            
-          </ul>
-        </div>
-        ${
-          meal.strYoutube
-            ? `
-                <a href="${meal.strYoutube}" target="_blank" class="youtube-link">
-                  <i class="fab fa-youtube"></i> Watch Video
-                <a/>
-              `
-            : ""
-        }  
-          `;
+           <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="meal-details-img">
+           <h2 class="meal-details-title">${meal.strMeal}</h2>
+           <div class="meal-details-category">
+             <span>${meal.strCategory || "Uncategorized"}</span>
+           </div>
+           <div class="meal-details-instructions">
+             <h3>Instructions</h3>
+             <p>${meal.strInstructions}</p>
+           </div>
+           <div class="meal-details-ingredients">
+             <h3>Ingredients</h3>
+             <ul class="ingredients-list">
+               ${ingredients
+                 .map(
+                   (item) => `
+                 <li><i class="fas fa-check-circle"></i> ${item.measure} ${item.ingredient}</li>
+               `
+                 )
+                 .join("")}
+             </ul>
+           </div>
+           ${
+             meal.strYoutube
+               ? `
+             <a href="${meal.strYoutube}" target="_blank" class="youtube-link">
+               <i class="fab fa-youtube"></i> Watch Video
+             </a>
+           `
+               : ""
+           }
+         `;
 
       mealDetails.classList.remove("hidden");
       mealDetails.scrollIntoView({ behavior: "smooth" });
     }
-  } catch (error) {}
+  } catch (error) {
+    errorContainer.textContent = "Could not load recipe details. Please try again later.";
+    errorContainer.classList.remove("hidden");
+  }
 }
-
