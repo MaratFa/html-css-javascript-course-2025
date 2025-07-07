@@ -146,3 +146,4 @@ async function handleMealClick(e) {
     }
   } catch (error) {}
 }
+
