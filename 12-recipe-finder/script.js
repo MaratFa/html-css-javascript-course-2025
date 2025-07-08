@@ -41,7 +41,12 @@ async function searchMeals() {
     // www.themealdb.com/api/json/v1/1/search.php?s=chicken
 
     const response = await fetch(`${SEARCH_URL}${searchTerm}`);
+
+    console.log(response);
+
     const data = await response.json();
+
+    console.log(data);
 
     if (data.meals === null) {
       // no meals found
@@ -84,6 +89,7 @@ function displayMeals(meals) {
 
 async function handleMealClick(e) {
   const mealEl = e.target.closest(".meal");
+
   if (!mealEl) return;
 
   const mealId = mealEl.getAttribute("data-meal-id");
@@ -109,39 +115,41 @@ async function handleMealClick(e) {
         }
       }
 
+      console.log(ingredients);
+
       // display meal details
       mealDetailsContent.innerHTML = `
-           <img src="${meal.strMealThumb}" alt="${
+        <img src="${meal.strMealThumb}" alt="${
         meal.strMeal
       }" class="meal-details-img">
-           <h2 class="meal-details-title">${meal.strMeal}</h2>
-           <div class="meal-details-category">
-             <span>${meal.strCategory || "Uncategorized"}</span>
+        <h2 class="meal-details-title">${meal.strMeal}</h2>
+        <div class="meal-details-category">
+            <span>${meal.strCategory || "Uncategorized"}</span>
+        </div>
+        <div class="meal-details-instructions">
+          <h3>Instructions</h3>
+          <p>${meal.strInstructions}</p>
            </div>
-           <div class="meal-details-instructions">
-             <h3>Instructions</h3>
-             <p>${meal.strInstructions}</p>
-           </div>
-           <div class="meal-details-ingredients">
-             <h3>Ingredients</h3>
-             <ul class="ingredients-list">
-               ${ingredients
-                 .map(
-                   (item) =>
-                     `<li><i class="fas fa-check-circle"></i> ${item.measure} ${item.ingredient}</li>`
-                 )
-                 .join("")}
-             </ul>
-           </div>
-           ${
-             meal.strYoutube
-               ? `
-                  <a href="${meal.strYoutube}" target="_blank" class="youtube-link">
-                    <i class="fab fa-youtube"></i> Watch Video
-                  </a>
-                  `
-               : ""
-           }
+        <div class="meal-details-ingredients">
+          <h3>Ingredients</h3>
+          <ul class="ingredients-list">
+            ${ingredients
+              .map(
+                (item) =>
+                  `<li><i class="fas fa-check-circle"></i> ${item.measure} ${item.ingredient}</li>`
+              )
+              .join("")}
+          </ul>
+        </div>
+        ${
+          meal.strYoutube
+            ? `
+              <a href="${meal.strYoutube}" target="_blank" class="youtube-link">
+                <i class="fab fa-youtube"></i> Watch Video
+              </a>
+              `
+            : ""
+        }
         `;
 
       mealDetails.classList.remove("hidden");
